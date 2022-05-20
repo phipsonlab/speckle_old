@@ -3,7 +3,6 @@ Type: Package
 Title: Statistical methods for analysing single cell RNA-seq data
 Version: 0.99.0
 Date: 2020-12-02
-Author: Belinda Phipson 
 Authors@R: 
   c(person(given = "Belinda",
            family = "Phipson",
