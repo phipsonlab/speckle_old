@@ -51,7 +51,7 @@ follows:
 
 ``` r
 library(devtools)
-devtools::install_github("Oshlack/speckle")
+devtools::install_github("phipsonlab/speckle")
 ```
 
 ## Example
