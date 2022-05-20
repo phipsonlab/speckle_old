@@ -46,7 +46,7 @@ normCounts <-function(x, log=FALSE, prior.count=0.5, lib.size=NULL)
   # Belinda Phipson
   # 30 November 2015
 {
-  if(any(class(x)=="DGEList")){
+  if(is(x, "DGEList")){
     lib.size <- x$samples$lib.size*x$samples$norm.factors
     counts <- x$counts
   }
