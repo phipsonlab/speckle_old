@@ -16,7 +16,7 @@ Authors@R:
            comment = c(ORCID = "0000-0002-2222-0958"))
     )
 Depends: R (>= 3.6.0)
-Imports: limma, edgeR, SingleCellExperiment, Seurat, statmod, ggplot2, methods, caret, scuttle, stringr, AnnotationDbi, org.Hs.eg.db, org.Mm.eg.db, stats, grDevices, graphics
+Imports: limma, edgeR, SingleCellExperiment, Seurat, statmod, ggplot2, methods, scuttle, stringr, AnnotationDbi, org.Hs.eg.db, org.Mm.eg.db, stats, grDevices, graphics
 VignetteBuilder: knitr
 Suggests: BiocStyle, knitr, rmarkdown, CellBench, scater, patchwork
 Description: speckle contains functions for the analysis of single cell RNA-seq data.
