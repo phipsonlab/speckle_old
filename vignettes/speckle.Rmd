@@ -57,7 +57,7 @@ plots, clustering trees and heatmaps of known marker genes.
 
 ```{r eval=FALSE}
 library(devtools)
-install_github("/Oshlack/speckle")
+install_github("/phipsonlab/speckle")
 ```
 
 # Finding significant differences in cell type proportions using propeller
