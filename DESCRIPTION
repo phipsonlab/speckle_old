@@ -7,7 +7,7 @@ Author: Belinda Phipson
 Authors@R: 
   c(person(given = "Belinda",
            family = "Phipson",
-           role = c("aut", "cre"),
+           role = c("aut"),
            email = "phipson.b@wehi.edu.au"),
     person(given = "Xinyi",
            family = "Jin",
