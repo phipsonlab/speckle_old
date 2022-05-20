@@ -6,13 +6,8 @@ Date: 2020-12-02
 Authors@R: 
   c(person(given = "Belinda",
            family = "Phipson",
-           role = c("aut"),
-           email = "phipson.b@wehi.edu.au"),
-    person(given = "Xinyi",
-           family = "Jin",
-           role = "cre",
-           email = "Melody-Jin@outlook.com",
-           comment = c(ORCID = "0000-0002-2222-0958"))
+           role = c("aut", "cre"),
+           email = "phipson.b@wehi.edu.au")
     )
 Depends: R (>= 3.6.0)
 Imports: limma, edgeR, SingleCellExperiment, Seurat, ggplot2, methods, scuttle, stringr, AnnotationDbi, org.Hs.eg.db, org.Mm.eg.db, stats, grDevices, graphics
