@@ -146,7 +146,7 @@ preprocess<- function(x, genome=genome, qc=qc){
   dnc <- tcm.final$superY==0 & tcm.final$superX==0
   if(any(dnc)==TRUE){
       zero.cells <- row.names(tcm.final)[dnc]
-      cat(length(zero.cells), "cell/s are unable to be classified due to an 
+      message(length(zero.cells), "cell/s are unable to be classified due to an 
       abundance of zeroes on X and Y chromosome genes\n")
   }
   tcm.final <- tcm.final[!dnc, ]
