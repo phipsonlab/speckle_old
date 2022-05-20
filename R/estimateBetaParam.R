@@ -24,7 +24,7 @@ estimateBetaParam <- function(x){
   # of proportions
   mu <- mean(x)
   V <- var(x)
-  a =((1-mu)/V - 1/mu)*mu^2
-  b = ((1-mu)/V - 1/mu)*mu*(1-mu)
+  a <- ((1-mu)/V - 1/mu)*mu^2
+  b <- ((1-mu)/V - 1/mu)*mu*(1-mu)
   list(a=a,b=b)
 }
