@@ -50,28 +50,28 @@
 #' plotCellTypePropsMeanVar(counts)
 #' 
 plotCellTypePropsMeanVar <- function(x){
-  x <- as.matrix(x)
-  params <- estimateBetaParamsFromCounts(x)
-  tot.cells <- colSums(x)
-  props <- t(t(x)/tot.cells)
+    x <- as.matrix(x)
+    params <- estimateBetaParamsFromCounts(x)
+    tot.cells <- colSums(x)
+    props <- t(t(x)/tot.cells)
 
-  varp <- params$pi*(1-params$pi)/params$n
-  var.props <- apply(props,1,var)
-  fitp <- lmFit(props)
-  fitp <- eBayes(fitp, robust=TRUE)
+    varp <- params$pi*(1-params$pi)/params$n
+    var.props <- apply(props,1,var)
+    fitp <- lmFit(props)
+    fitp <- eBayes(fitp, robust=TRUE)
 
-  ylimits.min <- min(log10(var.props),log10(varp), log10(fitp$s2.post))
-  ylimits.max <- max(log10(var.props),log10(varp), log10(fitp$s2.post))
+    ylimits.min <- min(log10(var.props),log10(varp), log10(fitp$s2.post))
+    ylimits.max <- max(log10(var.props),log10(varp), log10(fitp$s2.post))
 
- # par(mfrow=c(1,1))
-  plot(log10(rowMeans(props)), log10(var.props), pch=16, cex=2,
-       xlab="log10(proportion)", ylab="log10(variance)",
-       ylim=c(ylimits.min,ylimits.max), cex.lab=1.5, cex.axis=1.5)
-  lines(lowess(log10(rowMeans(props)),log10(varp)))
+    # par(mfrow=c(1,1))
+    plot(log10(rowMeans(props)), log10(var.props), pch=16, cex=2,
+         xlab="log10(proportion)", ylab="log10(variance)",
+         ylim=c(ylimits.min,ylimits.max), cex.lab=1.5, cex.axis=1.5)
+    lines(lowess(log10(rowMeans(props)),log10(varp)))
 
-  lines(lowess(log10(rowMeans(props)), log10(fitp$s2.post)), lwd=2, col=4)
-  legend("bottomright", legend=c("Empirical Bayes variance","Binomial variance"),
-         col=c(4,1), lty=1, lwd=2)
+    lines(lowess(log10(rowMeans(props)), log10(fitp$s2.post)), lwd=2, col=4)
+    legend("bottomright", legend=c("Empirical Bayes variance","Binomial variance"),
+           col=c(4,1), lty=1, lwd=2)
 
-  title("Mean-variance relationship: cell type proportions", cex.main=1.5)
+    title("Mean-variance relationship: cell type proportions", cex.main=1.5)
 }
