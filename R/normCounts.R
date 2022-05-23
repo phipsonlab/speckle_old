@@ -52,18 +52,18 @@ normCounts <-function(x, log=FALSE, prior.count=0.5, lib.size=NULL)
     }
     else{
         counts <- as.matrix(x)
-      if(is.null(lib.size)){
-          lib.size <- colSums(counts)
-      }
-      else{
-          if(length(lib.size)==ncol(x))
-              lib.size <- as.vector(lib.size)
-          else{
-              message("Vector of library sizes does not match dimensions of input 
-                        data. Calculating library sizes from the counts matrix.")
-              lib.size <- colSums(counts)
-          }
-      }
+        if(is.null(lib.size)){
+            lib.size <- colSums(counts)
+        }
+        else{
+            if(length(lib.size)==ncol(x))
+                lib.size <- as.vector(lib.size)
+            else{
+                message("Vector of library sizes does not match dimensions of input 
+                            data. Calculating library sizes from the counts matrix.")
+                lib.size <- colSums(counts)
+            }
+        }
     }
 
     M <- median(lib.size)
