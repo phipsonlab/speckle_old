@@ -134,7 +134,7 @@ preprocess<- function(x, genome=genome, qc=qc){
         #data.sce <-SingleCellExperiment(assays = list(counts = x))
         qcstats <- scuttle::perCellQCMetrics(x,subsets=list(Mito=1:100))
         qcfilter <- scuttle::quickPerCellQC(qcstats,
-                                            percent_subsets=c("subsets_Mito_percent"))
+                                    percent_subsets=c("subsets_Mito_percent"))
         # save the discarded cells
         discarded.cells <- colnames(x[,qcfilter$discard])
 
@@ -150,8 +150,8 @@ preprocess<- function(x, genome=genome, qc=qc){
     dnc <- tcm.final$superY==0 & tcm.final$superX==0
     if(any(dnc)==TRUE){
         zero.cells <- row.names(tcm.final)[dnc]
-        message(length(zero.cells), "cell/s are unable to be classified due to an 
-        abundance of zeroes on X and Y chromosome genes\n")
+        message(length(zero.cells), "cell/s are unable to be classified 
+                due to an abundance of zeroes on X and Y chromosome genes\n")
     }
     tcm.final <- tcm.final[!dnc, ]
 
@@ -165,6 +165,6 @@ preprocess<- function(x, genome=genome, qc=qc){
     data.df <- as.data.frame(data.df)
 
     list(tcm.final=tcm.final, data.df=data.df, discarded.cells=discarded.cells, 
-          zero.cells=zero.cells)
+            zero.cells=zero.cells)
 }
 
