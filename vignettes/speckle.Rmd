@@ -4,17 +4,17 @@ title: "speckle: statistical methods for analysing single cell RNA-seq data"
 date: "`r BiocStyle::doc_date()`"
 package: "`r BiocStyle::pkg_ver('speckle')`"
 vignette: >
-  %\VignetteEncoding{UTF-8}
-  %\VignetteIndexEntry{speckle: statistical methods for analysing single cell RNA-seq data}
-  %\VignetteEngine{knitr::rmarkdown}
+    %\VignetteEncoding{UTF-8}
+    %\VignetteIndexEntry{speckle: statistical methods for analysing single cell RNA-seq data}
+    %\VignetteEngine{knitr::rmarkdown}
 output: >
-  BiocStyle::html_document
+    BiocStyle::html_document
 html_document:
-  fig_caption: yes
-  fig_retina: FALSE
-  keep_md: FALSE
+    fig_caption: yes
+    fig_retina: FALSE
+    keep_md: FALSE
 editor_options: 
-  chunk_output_type: console
+    chunk_output_type: console
 ---
 
 ```{r setup, include=FALSE}
@@ -140,7 +140,7 @@ experiments in order to create one large dataset.
 
 ```{r}
 commongenes1 <- rownames(sc_data$sc_dropseq)[rownames(sc_data$sc_dropseq) %in% 
-                                               rownames(sc_data$sc_celseq)]
+                                                rownames(sc_data$sc_celseq)]
 commongenes2 <-  commongenes1[commongenes1 %in% rownames(sc_data$sc_10x)]
 
 sce_10x <- sc_data$sc_10x[commongenes2,]
@@ -187,18 +187,18 @@ new object manually, and retain only the information needed to run `propeller`.
 
 ```{r}
 sample <- rep(c("S1","S2","S3","S4","S5","S6"), 
-              c(ncol(sce_10x),ncol(sce_10x_rep2),ncol(sce_celseq),
+                c(ncol(sce_10x),ncol(sce_10x_rep2),ncol(sce_celseq),
                 ncol(sce_celseq_rep2), 
                 ncol(sce_dropseq),ncol(sce_dropseq_rep2)))
 cluster <- c(sce_10x$cell_line,sce_10x_rep2$cell_line,sce_celseq$cell_line,
-             sce_celseq_rep2$cell_line,sce_dropseq$cell_line,
-             sce_dropseq_rep2$cell_line)
+              sce_celseq_rep2$cell_line,sce_dropseq$cell_line,
+              sce_dropseq_rep2$cell_line)
 group <- rep(c("10x","celseq","dropseq"),
-             c(2*ncol(sce_10x),2*ncol(sce_celseq),2*ncol(sce_dropseq)))
+              c(2*ncol(sce_10x),2*ncol(sce_celseq),2*ncol(sce_dropseq)))
 
 allcounts <- cbind(counts(sce_10x),counts(sce_10x_rep2), 
-                   counts(sce_celseq), counts(sce_celseq_rep2),
-                   counts(sce_dropseq), counts(sce_dropseq_rep2))
+                    counts(sce_celseq), counts(sce_celseq_rep2),
+                    counts(sce_dropseq), counts(sce_dropseq_rep2))
 
 sce_all <- SingleCellExperiment(assays = list(counts = allcounts))
 sce_all$sample <- sample
@@ -226,9 +226,9 @@ Plot PC1 vs PC2 colouring by cell line and technology:
 
 ```{r, fig.width=12, fig.height=6}
 pca1 <- scater::plotReducedDim(sce_all, dimred = "PCA", colour_by = "cluster") +
-  ggtitle("Cell line")
+    ggtitle("Cell line")
 pca2 <- scater::plotReducedDim(sce_all, dimred = "PCA", colour_by = "group") +
-  ggtitle("Technology")
+    ggtitle("Technology")
 pca1 + pca2
 ```
 
@@ -237,9 +237,9 @@ Plot UMAP highlighting cell line and technology:
 ```{r, fig.width=12, fig.height=6}
 umap1 <- scater::plotReducedDim(sce_all, dimred = "UMAP", 
                                 colour_by = "cluster") + 
-  ggtitle("Cell line")
+    ggtitle("Cell line")
 umap2 <- scater::plotReducedDim(sce_all, dimred = "UMAP", colour_by = "group") +
-  ggtitle("Technology")
+    ggtitle("Technology")
 umap1 + umap2
 ```
 
@@ -338,8 +338,8 @@ and see whether the significant p-values make sense.
 par(mfrow=c(1,3))
 for(i in 1:3){
 stripchart(props$Proportions[i,]~rep(c("10x","celseq","dropseq"),each=2),
-           vertical=TRUE, pch=16, method="jitter",
-           col = c("orange","purple","dark green"),cex=2, ylab="Proportions")
+            vertical=TRUE, pch=16, method="jitter",
+            col = c("orange","purple","dark green"),cex=2, ylab="Proportions")
 title(rownames(props$Proportions)[i])
 }
 ```
@@ -486,11 +486,11 @@ fit.prop$coefficients
 
 par(mfrow=c(1,3))
 for(i in 1:3){
-  plot(dose, props$Proportions[i,], main = rownames(props$Proportions)[i], 
-       pch=16, cex=2, ylab="Proportions", cex.lab=1.5, cex.axis=1.5,
-       cex.main=2)
-  abline(a=fit.prop$coefficients[i,1], b=fit.prop$coefficients[i,2], col=4, 
-         lwd=2)
+    plot(dose, props$Proportions[i,], main = rownames(props$Proportions)[i], 
+        pch=16, cex=2, ylab="Proportions", cex.lab=1.5, cex.axis=1.5,
+        cex.main=2)
+    abline(a=fit.prop$coefficients[i,1], b=fit.prop$coefficients[i,2], col=4, 
+          lwd=2)
 }
 ```
 
@@ -519,7 +519,7 @@ a fixed effect.
 des.tech <- model.matrix(~group)
 
 dupcor <- duplicateCorrelation(props$TransformedProps, design=des.tech,
-                               block=pair)
+                                block=pair)
 dupcor
 ```
 
@@ -529,7 +529,7 @@ which we expect because we bootstrapped these additional samples.
 ```{r}
 # Fitting the linear model accounting for pair as a random effect
 fit1 <- lmFit(props$TransformedProps, design=des.tech, block=pair, 
-              correlation=dupcor$consensus)
+                correlation=dupcor$consensus)
 fit1 <- eBayes(fit1)
 summary(decideTests(fit1))
 
@@ -630,7 +630,7 @@ o <- order(avgexp, decreasing = TRUE)
 allcounts2 <- allcounts[o,]
 allcounts2[1:5,1:5]
 ann <- AnnotationDbi::select(org.Hs.eg.db, keys=rownames(allcounts2),
-              columns=c("ENSEMBL","SYMBOL"), keytype="ENSEMBL")
+                columns=c("ENSEMBL","SYMBOL"), keytype="ENSEMBL")
 m <- match(rownames(allcounts2), ann$ENSEMBL)
 symbol <- ann$SYMBOL[m]
 table(duplicated(symbol))
