@@ -70,21 +70,23 @@
 #' pro.data$zero.cells
 #' 
 preprocess<- function(x, genome=genome, qc=qc){
-  
+    
     x <- as.matrix(x)
     row.names(x)<- toupper(row.names(x))
     # genes located in the X chromosome that have been reported to escape 
     # X-inactivation
     # http://bioinf.wehi.edu.au/software/GenderGenes/index.html
-    Xgenes<- c("ARHGAP4","STS","ARSD", "ARSL", "AVPR2", "BRS3", "S100G", "CHM",
-                "CLCN4", "DDX3X","EIF1AX","EIF2S3", "GPM6B", "GRPR", "HCFC1",
-                 "L1CAM", "MAOA", "MYCLP1", "NAP1L3", "GPR143", "CDK16", "PLXNB3",
-                 "PRKX", "RBBP7", "RENBP", "RPS4X", "TRAPPC2", "SH3BGRL", "TBL1X",
-                 "UBA1", "KDM6A", "XG", "XIST", "ZFX", "PUDP", "PNPLA4", "USP9X",
-                 "KDM5C", "SMC1A", "NAA10", "OFD1", "IKBKG", "PIR", "INE2", "INE1",
-                 "AP1S2", "GYG2", "MED14", "RAB9A", "ITM2A", "MORF4L2", "CA5B",
-                 "SRPX2", "GEMIN8", "CTPS2", "CLTRN", "NLGN4X", "DUSP21", "ALG13",
-                 "SYAP1", "SYTL4", "FUNDC1", "GAB3", "RIBC1", "FAM9C","CA5BP1")
+    Xgenes<- c("ARHGAP4","STS","ARSD", "ARSL", "AVPR2", "BRS3", "S100G",
+                "CHM", "CLCN4", "DDX3X","EIF1AX","EIF2S3", "GPM6B", 
+                "GRPR", "HCFC1", "L1CAM", "MAOA", "MYCLP1", "NAP1L3", 
+                "GPR143", "CDK16", "PLXNB3", "PRKX", "RBBP7", "RENBP",
+                "RPS4X", "TRAPPC2", "SH3BGRL", "TBL1X","UBA1", "KDM6A", 
+                "XG", "XIST", "ZFX", "PUDP", "PNPLA4", "USP9X", "KDM5C", 
+                "SMC1A", "NAA10", "OFD1", "IKBKG", "PIR", "INE2", "INE1",
+                "AP1S2", "GYG2", "MED14", "RAB9A", "ITM2A", "MORF4L2", 
+                "CA5B", "SRPX2", "GEMIN8", "CTPS2", "CLTRN", "NLGN4X", 
+                "DUSP21", "ALG13","SYAP1", "SYTL4", "FUNDC1", "GAB3", 
+                "RIBC1", "FAM9C","CA5BP1")
 
     # genes belonging to the male-specific region of chromosome Y (unique genes)
     # http://bioinf.wehi.edu.au/software/GenderGenes/index.html
