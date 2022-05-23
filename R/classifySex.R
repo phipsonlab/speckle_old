@@ -26,7 +26,8 @@
 #' @param qc logical, indicates whether to perform quality control or not. 
 #' qc = TRUE will predict cells that pass quality control only and the filtered 
 #' cells will not be classified. qc = FALSE will predict every cell except the 
-#' cells with zero counts on *XIST/Xist* and the sum of the Y genes. Default is TRUE.
+#' cells with zero counts on *XIST/Xist* and the sum of the Y genes. 
+#' Default is TRUE.
 #' 
 #' @return a dataframe with predicted labels for each cell
 #' 
