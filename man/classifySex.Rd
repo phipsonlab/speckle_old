@@ -53,15 +53,14 @@ sc_10x <- sc_data$sc_10x
 
 counts <- counts(sc_10x)
 ann <- select(org.Hs.eg.db, keys=rownames(sc_10x),
-             columns=c("ENSEMBL","SYMBOL"), keytype="ENSEMBL")
+                columns=c("ENSEMBL","SYMBOL"), keytype="ENSEMBL")
 m <- match(rownames(counts), ann$ENSEMBL)
 rownames(counts) <- ann$SYMBOL[m]
 
 sex <- classifySex(counts, genome="Hs")
 
 table(sex$prediction)
-boxplot(counts["XIST",]~sex$prediction)
-   
+boxplot(counts["XIST",]~sex$prediction) 
 }
 \author{
 Xinyi Jin
