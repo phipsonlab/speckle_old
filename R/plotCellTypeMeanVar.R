@@ -71,22 +71,22 @@ plotCellTypeMeanVar <- function(x){
     tagvars <- means + means^2 * y$tagwise.dispersion
 
     ylimits.min <- min(log10(vars),log10(ebv), log10(params$var),
-                       log10(tagvars), log10(params$n*params$pi))
+                        log10(tagvars), log10(params$n*params$pi))
     ylimits.max <- max(log10(vars),log10(ebv), log10(params$var),
-                       log10(tagvars), log10(params$n*params$pi))
+                        log10(tagvars), log10(params$n*params$pi))
 
     par(mar=c(5,5,2,2))
     #par(mfrow=c(1,1))
     plot(log10(means),log10(vars), pch=16, cex=1.5, cex.lab=1.5, cex.axis=1.5,
-         ylim=c(ylimits.min,ylimits.max),
-         xlab = "log10(mean)", ylab = "log10(variance)")
+            ylim=c(ylimits.min,ylimits.max),
+            xlab = "log10(mean)", ylab = "log10(variance)")
     lines(lowess(log10(means), log10(ebv)), col=1, lwd=2)
     lines(lowess(log10(means), log10(params$var)), lwd=2, col=4)
     lines(lowess(log10(means),log10(tagvars)),lwd=2,col="purple", lty=2)
     lines(lowess(log10(means),log10(params$n*params$pi)),lwd=2,col="red", lty=2)
-    legend("bottomright", legend=c("Beta-binomial","Negative binomial", "Binomial", 
-                               "Poisson"),
-           col=c(4,"purple",1,2), lty=c(1,2,1,2), lwd=2)
+    legend("bottomright", legend=c("Beta-binomial","Negative binomial", 
+                                    "Binomial", "Poisson"),
+            col=c(4,"purple",1,2), lty=c(1,2,1,2), lwd=2)
     title("Mean-variance relationship: cell type counts", cex.main=1.5)
 
 }
