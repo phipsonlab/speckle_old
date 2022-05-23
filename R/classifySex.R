@@ -74,23 +74,23 @@ classifySex<-function(x, genome=NULL, qc = TRUE)
     
     # pre-process 
     processed.data<-preprocess(x, genome = genome, qc = qc)
-  
+    
     # the processed transposed count matrix 
     tcm <-processed.data$tcm.final
-  
+    
     # the normalised, scaled transposed count matrix 
     data.df <- processed.data$data.df
-  
+    
     # cells that filtered by QC
     discarded.cells <- processed.data$discarded.cells
-  
+    
     # cells with zero count on XIST and superY.all
     zero.cells <- processed.data$zero.cells
-  
+    
     # store the final predictions 
     final.pred<-data.frame(prediction=rep("NA", ncol(x)))
     row.names(final.pred)<- colnames(x)
-  
+    
     # load trained models 
     if(genome == "Mm"){
       model <- Mm.model
@@ -98,9 +98,9 @@ classifySex<-function(x, genome=NULL, qc = TRUE)
     else{
       model <- Hs.model
     }
-
+    
     preds <- predict(model, newdata = data.df)
     final.pred[row.names(data.df), "prediction"]<- as.character(preds)
-  
+    
     final.pred
 }
