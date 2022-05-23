@@ -77,22 +77,22 @@ preprocess<- function(x, genome=genome, qc=qc){
     # X-inactivation
     # http://bioinf.wehi.edu.au/software/GenderGenes/index.html
     Xgenes<- c("ARHGAP4","STS","ARSD", "ARSL", "AVPR2", "BRS3", "S100G", "CHM",
-               "CLCN4", "DDX3X","EIF1AX","EIF2S3", "GPM6B", "GRPR", "HCFC1",
-               "L1CAM", "MAOA", "MYCLP1", "NAP1L3", "GPR143", "CDK16", "PLXNB3",
-               "PRKX", "RBBP7", "RENBP", "RPS4X", "TRAPPC2", "SH3BGRL", "TBL1X",
-               "UBA1", "KDM6A", "XG", "XIST", "ZFX", "PUDP", "PNPLA4", "USP9X",
-               "KDM5C", "SMC1A", "NAA10", "OFD1", "IKBKG", "PIR", "INE2", "INE1",
-               "AP1S2", "GYG2", "MED14", "RAB9A", "ITM2A", "MORF4L2", "CA5B",
-               "SRPX2", "GEMIN8", "CTPS2", "CLTRN", "NLGN4X", "DUSP21", "ALG13",
-               "SYAP1", "SYTL4", "FUNDC1", "GAB3", "RIBC1", "FAM9C","CA5BP1")
+                "CLCN4", "DDX3X","EIF1AX","EIF2S3", "GPM6B", "GRPR", "HCFC1",
+                 "L1CAM", "MAOA", "MYCLP1", "NAP1L3", "GPR143", "CDK16", "PLXNB3",
+                 "PRKX", "RBBP7", "RENBP", "RPS4X", "TRAPPC2", "SH3BGRL", "TBL1X",
+                 "UBA1", "KDM6A", "XG", "XIST", "ZFX", "PUDP", "PNPLA4", "USP9X",
+                 "KDM5C", "SMC1A", "NAA10", "OFD1", "IKBKG", "PIR", "INE2", "INE1",
+                 "AP1S2", "GYG2", "MED14", "RAB9A", "ITM2A", "MORF4L2", "CA5B",
+                 "SRPX2", "GEMIN8", "CTPS2", "CLTRN", "NLGN4X", "DUSP21", "ALG13",
+                 "SYAP1", "SYTL4", "FUNDC1", "GAB3", "RIBC1", "FAM9C","CA5BP1")
 
     # genes belonging to the male-specific region of chromosome Y (unique genes)
     # http://bioinf.wehi.edu.au/software/GenderGenes/index.html
     Ygenes<-c("AMELY", "DAZ1", "PRKY", "RBMY1A1", "RBMY1HP", "RPS4Y1", "SRY",
-              "TSPY1", "UTY", "ZFY","KDM5D", "USP9Y", "DDX3Y", "PRY", "XKRY",
-              "BPY2", "VCY", "CDY1", "EIF1AY", "TMSB4Y","CDY2A", "NLGN4Y",
-              "PCDH11Y", "HSFY1", "TGIF2LY", "TBL1Y", "RPS4Y2", "HSFY2",
-              "CDY2B", "TXLNGY","CDY1B", "DAZ3", "DAZ2", "DAZ4")
+                "TSPY1", "UTY", "ZFY","KDM5D", "USP9Y", "DDX3Y", "PRY", "XKRY",
+                "BPY2", "VCY", "CDY1", "EIF1AY", "TMSB4Y","CDY2A", "NLGN4Y",
+                "PCDH11Y", "HSFY1", "TGIF2LY", "TBL1Y", "RPS4Y2", "HSFY2",
+                "CDY2B", "TXLNGY","CDY1B", "DAZ3", "DAZ2", "DAZ4")
 
     # build artificial genes
     Xgene.set <-Xgenes[Xgenes %in% row.names(x)]
@@ -104,24 +104,24 @@ preprocess<- function(x, genome=genome, qc=qc){
     cm.new["superX", ] <-colSums(x[Xgene.set,])
     cm.new["superY", ] <-colSums(x[Ygene.set,])
 
-  #  if (genome == "Mm"){
-  #    ann <- suppressWarnings(AnnotationDbi::select(org.Mm.eg.db,
-  #                                   keys=str_to_title(row.names(x)),
-  #                                   columns=c("SYMBOL","GENENAME","CHR"),
-  #                                  keytype="SYMBOL"))
-  #  }else{
-  #    ann <- suppressWarnings(AnnotationDbi::select(org.Hs.eg.db,
-  #                                   keys=row.names(x),
-  #                                   columns=c("SYMBOL","GENENAME","CHR"),
-  #                                   keytype="SYMBOL"))
-  #  }
-  #  # create  superY.all
-  #  Ychr.genes<- toupper(unique(ann[which(ann$CHR=="Y"), "SYMBOL"]))
-  #  missing <- setdiff(Ychr.genes, row.names(x))
-  #  if (length(missing) >0){
-  #    Ychr.genes <- Ychr.genes[-match(missing, Ychr.genes)]
-  #  }
-  #  cm.new["superY.all", ] <- colSums(x[Ychr.genes,])
+    #  if (genome == "Mm"){
+    #    ann <- suppressWarnings(AnnotationDbi::select(org.Mm.eg.db,
+    #                                   keys=str_to_title(row.names(x)),
+    #                                   columns=c("SYMBOL","GENENAME","CHR"),
+    #                                  keytype="SYMBOL"))
+    #  }else{
+    #    ann <- suppressWarnings(AnnotationDbi::select(org.Hs.eg.db,
+    #                                   keys=row.names(x),
+    #                                   columns=c("SYMBOL","GENENAME","CHR"),
+    #                                   keytype="SYMBOL"))
+    #  }
+    #  # create  superY.all
+    #  Ychr.genes<- toupper(unique(ann[which(ann$CHR=="Y"), "SYMBOL"]))
+    #  missing <- setdiff(Ychr.genes, row.names(x))
+    #  if (length(missing) >0){
+    #    Ychr.genes <- Ychr.genes[-match(missing, Ychr.genes)]
+    #  }
+    #  cm.new["superY.all", ] <- colSums(x[Ychr.genes,])
 
     ############################################################################
     # Pre-processing
@@ -129,15 +129,15 @@ preprocess<- function(x, genome=genome, qc=qc){
     # keep a copy of library size
     discarded.cells <- NA
     if (qc == TRUE){
-      #data.sce <-SingleCellExperiment(assays = list(counts = x))
-      qcstats <- scuttle::perCellQCMetrics(x,subsets=list(Mito=1:100))
-      qcfilter <- scuttle::quickPerCellQC(qcstats,
-                                          percent_subsets=c("subsets_Mito_percent"))
-      # save the discarded cells
-      discarded.cells <- colnames(x[,qcfilter$discard])
+        #data.sce <-SingleCellExperiment(assays = list(counts = x))
+        qcstats <- scuttle::perCellQCMetrics(x,subsets=list(Mito=1:100))
+        qcfilter <- scuttle::quickPerCellQC(qcstats,
+                                            percent_subsets=c("subsets_Mito_percent"))
+        # save the discarded cells
+        discarded.cells <- colnames(x[,qcfilter$discard])
 
-      # cm.new only contains cells that pass the quality control
-      cm.new <-cm.new[,!qcfilter$discard]
+        # cm.new only contains cells that pass the quality control
+        cm.new <-cm.new[,!qcfilter$discard]
     }
 
     tcm.final <- t(cm.new)
@@ -163,6 +163,6 @@ preprocess<- function(x, genome=genome, qc=qc){
     data.df <- as.data.frame(data.df)
 
     list(tcm.final=tcm.final, data.df=data.df, discarded.cells=discarded.cells, 
-         zero.cells=zero.cells)
+          zero.cells=zero.cells)
 }
 
