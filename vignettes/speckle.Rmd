@@ -191,10 +191,10 @@ sample <- rep(c("S1","S2","S3","S4","S5","S6"),
                 ncol(sce_celseq_rep2), 
                 ncol(sce_dropseq),ncol(sce_dropseq_rep2)))
 cluster <- c(sce_10x$cell_line,sce_10x_rep2$cell_line,sce_celseq$cell_line,
-              sce_celseq_rep2$cell_line,sce_dropseq$cell_line,
-              sce_dropseq_rep2$cell_line)
+                sce_celseq_rep2$cell_line,sce_dropseq$cell_line,
+                sce_dropseq_rep2$cell_line)
 group <- rep(c("10x","celseq","dropseq"),
-              c(2*ncol(sce_10x),2*ncol(sce_celseq),2*ncol(sce_dropseq)))
+                c(2*ncol(sce_10x),2*ncol(sce_celseq),2*ncol(sce_dropseq)))
 
 allcounts <- cbind(counts(sce_10x),counts(sce_10x_rep2), 
                     counts(sce_celseq), counts(sce_celseq_rep2),
