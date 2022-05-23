@@ -94,10 +94,10 @@ classifySex<-function(x, genome=NULL, qc = TRUE)
     
     # load trained models 
     if(genome == "Mm"){
-      model <- Mm.model
+        model <- Mm.model
     }
     else{
-      model <- Hs.model
+        model <- Hs.model
     }
     
     preds <- predict(model, newdata = data.df)
