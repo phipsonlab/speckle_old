@@ -299,12 +299,12 @@ propeller(clusters=sce_all$cluster, sample=sce_all$sample, group=sce_all$group)
 ```
 
 The cell lines were mixed together in roughly equal proportions (~0.33) and 
-hence we don't expect to see significant differences between the three clusters. 
-However, because bootstrapping the samples doesn't incorporate enough 
-variability between the samples to mimic true biological variability, we can see 
-that the H1975 cluster looks significantly different between the three 
-technologies. The proportion of this cell line is closer to 0.4 for CelSeq and 
-DropSeq, and 0.34 for the 10x data.
+hence we don't expect to see significant differences between the three 
+clusters. However, because bootstrapping the samples doesn't incorporate 
+enough variability between the samples to mimic true biological variability, 
+we can see that the H1975 cluster looks significantly different between 
+the three technologies. The proportion of this cell line is closer to 0.4 
+for CelSeq and DropSeq, and 0.34 for the 10x data.
 
 # Visualise the results
 
@@ -441,8 +441,8 @@ Let us assume that we expect that the different technologies have a meaningful
 ordering to them, and we would like to find the cell types that are increasing 
 or decreasing along this trend. In more complex scenarios beyond group 
 comparisons I would recommend taking the transformed proportions from the 
-`getTransformedProps` function and using the linear model fitting functions from 
-the `r BiocStyle::Biocpkg("limma")` package directly.
+`getTransformedProps` function and using the linear model fitting functions 
+from the `r BiocStyle::Biocpkg("limma")` package directly.
 
 Let us assume that the ordering of the technologies is 10x -> celseq -> dropseq. 
 Then we can recode them 1, 2, 3 and treat the technologies as a
@@ -500,9 +500,9 @@ model) obtained from the analysis on the proportions for visualisation purposes.
 
 ## Including random effects
 
-If you have a random effect that you would like to account for in your analysis, 
-for example repeated measures on the same individual, then you can use the
-`duplicateCorrelation` function from the `r BiocStyle::Biocpkg("limma")`.
+If you have a random effect that you would like to account for in your
+analysis, for example repeated measures on the same individual, then you can 
+use the `duplicateCorrelation` function from the `r BiocStyle::Biocpkg("limma")`.
 
 For illustration purposes, let us assume that `pair` indicates samples taken 
 from the same individual (or they could represent technical replicates), and we 
@@ -561,12 +561,12 @@ use the ``r BiocStyle::Biocpkg("lme4")` package.
 The experimental groups are likely to contribute large sources of variation in 
 the data. In the `r BiocStyle::Biocpkg("CellBench")` data the technology effect 
 is larger than the cell line effect. In order to cluster the data to produce 
-meaningful cell types that will then feed into meaningful tests for proportions, 
-the cell types should be represented in as many samples as possible. Users 
-should consider using integration techniques on their single cell data 
-prior to clustering, integrating on biological sample or perhaps experimental 
-group. See methods such as Harmony, Liger and Seurat's integration technique 
-for more information.
+meaningful cell types that will then feed into meaningful tests for 
+proportions, the cell types should be represented in as many samples as 
+possible. Users should consider using integration techniques on their 
+single cell data prior to clustering, integrating on biological sample or 
+perhaps experimental group. See methods such as Harmony, Liger and Seurat's 
+integration technique for more information.
 
 Cell type label assignment should not be too refined such that every sample has
 many unique cell types. The `propeller` function can handle proportions of 0 and
@@ -599,8 +599,8 @@ is the gene responsible for X-inactivation. It is highly expressed in females,
 and not expressed in males. In experiments where the sex of the samples has not 
 been recorded, the variation due to sex can often be captured by the top 
 principal component in an MDS or PCA plot. It is important to know if the 
-samples are a mix of males and females and to take this information into account 
-in downstream analysis.
+samples are a mix of males and females and to take this information 
+into account in downstream analysis.
 
 It turns out that for single cell data, it is not a simple matter to classify
 cells as male or female. The main reason for this is that the cells are
