@@ -71,18 +71,18 @@
 getTransformedProps <- function(clusters=clusters, sample=sample, 
                                 transform=NULL)
 {
-  if(is.null(transform)) transform <- "logit"
-  
-  tab <- table(sample, clusters)
-  props <- tab/rowSums(tab)
-  if(transform=="asin"){
-      message("Performing arcsin square root transformation of proportions")
-      prop.trans <- asin(sqrt(props))
-  }
-  else if(transform=="logit"){
-      message("Performing logit transformation of proportions")
-      props.pseudo <- (tab+0.5)/rowSums(tab+0.5)
-      prop.trans <- log(props.pseudo/(1-props.pseudo))
-  }
-  list(Counts=t(tab), TransformedProps=t(prop.trans), Proportions=t(props))
+    if(is.null(transform)) transform <- "logit"
+
+    tab <- table(sample, clusters)
+    props <- tab/rowSums(tab)
+    if(transform=="asin"){
+        message("Performing arcsin square root transformation of proportions")
+        prop.trans <- asin(sqrt(props))
+    }
+    else if(transform=="logit"){
+        message("Performing logit transformation of proportions")
+        props.pseudo <- (tab+0.5)/rowSums(tab+0.5)
+        prop.trans <- log(props.pseudo/(1-props.pseudo))
+    }
+    list(Counts=t(tab), TransformedProps=t(prop.trans), Proportions=t(props))
 }
