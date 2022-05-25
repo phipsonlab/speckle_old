@@ -52,40 +52,39 @@
 #'
 plotCellTypeProps <- function(x=NULL, clusters=NULL, sample=NULL)
 {
-  if(is.null(x) & is.null(sample) & is.null(clusters))
-    stop("Please provide either a SingleCellExperiment object or Seurat
-          object with required annotation metadata, or explicitly provide
-          clusters and sample information")
+    if(is.null(x) & is.null(sample) & is.null(clusters))
+        stop("Please provide either a SingleCellExperiment object or Seurat 
+                object with required annotation metadata, or explicitly provide
+                clusters and sample information")
 
-  if((is.null(clusters) | is.null(sample)) & !is.null(x)){
-    # Extract cluster, sample and group info from SCE object
-    if(is(x,"SingleCellExperiment"))
-      y <- .extractSCE(x)
+    if((is.null(clusters) | is.null(sample)) & !is.null(x)){
+        # Extract cluster, sample and group info from SCE object
+        if(is(x,"SingleCellExperiment"))
+            y <- .extractSCE(x)
 
-    # Extract cluster, sample and group info from Seurat object
-    if(is(x,"Seurat"))
-      y <- .extractSeurat(x)
+        # Extract cluster, sample and group info from Seurat object
+        if(is(x,"Seurat"))
+            y <- .extractSeurat(x)
+            clusters <- y$clusters
+            sample <- y$sample
+    }
 
-    clusters <- y$clusters
-    sample <- y$sample
-  }
+    prop.list <- getTransformedProps(clusters, sample)
 
-  prop.list <- getTransformedProps(clusters, sample)
+    Proportions <- as.vector(t(prop.list$Proportions))
+    Samples <- rep(colnames(prop.list$Proportions), nrow(prop.list$Proportions))
+    Clusters <- rep(rownames(prop.list$Proportions),
+                    each=ncol(prop.list$Proportions))
 
-  Proportions <- as.vector(t(prop.list$Proportions))
-  Samples <- rep(colnames(prop.list$Proportions), nrow(prop.list$Proportions))
-  Clusters <- rep(rownames(prop.list$Proportions),
-                  each=ncol(prop.list$Proportions))
+    plotdf <- data.frame(Samples=Samples, Clusters=Clusters,
+                            Proportions=Proportions)
 
-  plotdf <- data.frame(Samples=Samples, Clusters=Clusters,
-                       Proportions=Proportions)
-
-  ggplot(plotdf,aes(x=Samples,y=Proportions,fill=Clusters)) +
-    geom_bar(stat="identity") +
-    theme(axis.text.x = element_text(size=12),
-          axis.text.y = element_text(size=12),
-          axis.title = element_text(size=14),
-          legend.text = element_text(size=12),
-          legend.title = element_text(size=14))
+    ggplot(plotdf,aes(x=Samples,y=Proportions,fill=Clusters)) +
+        geom_bar(stat="identity") +
+        theme(axis.text.x = element_text(size=12),
+                axis.text.y = element_text(size=12),
+                axis.title = element_text(size=14),
+                legend.text = element_text(size=12),
+                legend.title = element_text(size=14))
 
 }

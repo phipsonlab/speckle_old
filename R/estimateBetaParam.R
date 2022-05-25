@@ -20,11 +20,11 @@
 #' estimateBetaParam(props)
 #'
 estimateBetaParam <- function(x){
-  # solve for the hyperparameters of the beta distribution given a vector
-  # of proportions
-  mu <- mean(x)
-  V <- var(x)
-  a =((1-mu)/V - 1/mu)*mu^2
-  b = ((1-mu)/V - 1/mu)*mu*(1-mu)
-  list(a=a,b=b)
+    # solve for the hyperparameters of the beta distribution given a vector
+    # of proportions
+    mu <- mean(x)
+    V <- var(x)
+    a <- ((1-mu)/V - 1/mu)*mu^2
+    b <- ((1-mu)/V - 1/mu)*mu*(1-mu)
+    list(a=a,b=b)
 }

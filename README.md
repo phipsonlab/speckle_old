@@ -36,7 +36,7 @@ following commands:
 # devtools/remotes won't install Suggested packages from Bioconductor
 BiocManager::install(c("CellBench", "BiocStyle", "scater"))
 
-remotes::install_github("Oshlack/speckle", build_vignettes = TRUE, 
+remotes::install_github("phipsonlab/speckle", build_vignettes = TRUE, 
 dependencies = "Suggest")
 ```
 
@@ -51,7 +51,7 @@ follows:
 
 ``` r
 library(devtools)
-devtools::install_github("Oshlack/speckle")
+devtools::install_github("phipsonlab/speckle")
 ```
 
 ## Example
