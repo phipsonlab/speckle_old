@@ -41,37 +41,36 @@
 #' boxplot(lnorm.y, main="Log2-normalised counts")
 #'
 normCounts <-function(x, log=FALSE, prior.count=0.5, lib.size=NULL)
-  # Function to normalise to median library size instead of counts per million
-  # Input is DGEList object or matrix
-  # Belinda Phipson
-  # 30 November 2015
+    # Function to normalise to median library size instead of counts per million
+    # Input is DGEList object or matrix
+    # Belinda Phipson
+    # 30 November 2015
 {
-  if(any(class(x)=="DGEList")){
-    lib.size <- x$samples$lib.size*x$samples$norm.factors
-    counts <- x$counts
-  }
-  else{
-    counts <- as.matrix(x)
-    if(is.null(lib.size)){
-      lib.size <- colSums(counts)
+    if(is(x, "DGEList")){
+        lib.size <- x$samples$lib.size*x$samples$norm.factors
+        counts <- x$counts
     }
     else{
-      if(length(lib.size)==ncol(x))
-        lib.size <- as.vector(lib.size)
-      else{
-        message("Vector of library sizes does not match dimensions of input 
-                data. Calculating library sizes from the counts matrix.")
-        lib.size <- colSums(counts)
-      }
+        counts <- as.matrix(x)
+        if(is.null(lib.size)){
+            lib.size <- colSums(counts)
+        }
+        else{
+            if(length(lib.size)==ncol(x))
+                lib.size <- as.vector(lib.size)
+            else{
+                message("Vector of library sizes does not match dimensions of input 
+                            data. Calculating library sizes from the counts matrix.")
+                lib.size <- colSums(counts)
+            }
+        }
     }
-      
-  }
 
-  M <- median(lib.size)
-  if(log){
-    prior.count.scaled <- lib.size/mean(lib.size)*prior.count
-    lib.size <- lib.size + 2*prior.count.scaled
-    log2(t((t(counts)+prior.count.scaled)/lib.size*M))
-  }
-  else t(t(counts)/lib.size*M)
+    M <- median(lib.size)
+    if(log){
+        prior.count.scaled <- lib.size/mean(lib.size)*prior.count
+        lib.size <- lib.size + 2*prior.count.scaled
+        log2(t((t(counts)+prior.count.scaled)/lib.size*M))
+    }
+    else t(t(counts)/lib.size*M)
 }

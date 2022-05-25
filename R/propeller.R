@@ -113,7 +113,7 @@
 #'   robust = FALSE, trend = FALSE, transform="asin")
 #'
 propeller <- function(x=NULL, clusters=NULL, sample=NULL, group=NULL,
-                      trend=FALSE, robust=TRUE, transform="logit")
+                        trend=FALSE, robust=TRUE, transform="logit")
 #    Testing for differences in cell type proportions
 #    Belinda Phipson
 #    29 July 2019
@@ -157,7 +157,7 @@ propeller <- function(x=NULL, clusters=NULL, sample=NULL, group=NULL,
         message("group variable has 2 levels, t-tests will be performed")
         contrasts <- c(1,-1)
         out <- propeller.ttest(prop.list, design, contrasts=contrasts,
-                               robust=robust, trend=trend, sort=FALSE)
+                                robust=robust, trend=trend, sort=FALSE)
         out <- data.frame(BaselineProp=baseline.props,out)
         o <- order(out$P.Value)
         out[o,]
@@ -166,11 +166,11 @@ propeller <- function(x=NULL, clusters=NULL, sample=NULL, group=NULL,
         message("group variable has > 2 levels, ANOVA will be performed")
         coef <- seq_len(ncol(design))
         out <- propeller.anova(prop.list, design, coef=coef, robust=robust,
-                               trend=trend, sort=FALSE)
+                                trend=trend, sort=FALSE)
         out <- data.frame(BaselineProp=as.vector(baseline.props),out)
         o <- order(out$P.Value)
         out[o,]
-  }
+    }
 
 }
 

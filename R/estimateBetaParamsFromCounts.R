@@ -31,20 +31,20 @@
 #' 
 #' 
 estimateBetaParamsFromCounts <- function(x){
-  # Make sure input is a matrix
-  counts <- as.matrix(x)
-  # Normalise the counts so that the total number of counts per sample is equal
-  nc <- normCounts(counts)
-  # Get cell type means
-  m1 <- rowMeans(nc)
-  # Get variance estimate for each cell type
-  m2 <- rowSums(nc^2)/ncol(nc)
-  n <- mean(colSums(nc))
-  alpha <- (n*m1-m2)/(n*(m2/m1-m1-1)+m1)
-  beta <- ((n-m1)*(n-m2/m1))/(n*(m2/m1-m1-1)+m1)
-  disp <- 1/(alpha+beta)
-  pi <- alpha/(alpha+beta)
-  var <- n*pi*(1-pi)*(n*disp+1)/(1+disp)
-  output <- list(n=n, alpha=alpha, beta=beta, pi=pi, dispersion=disp, var=var)
-  output
+    # Make sure input is a matrix
+    counts <- as.matrix(x)
+    # Normalise the counts so that the total number of counts per sample is equal
+    nc <- normCounts(counts)
+    # Get cell type means
+    m1 <- rowMeans(nc)
+    # Get variance estimate for each cell type
+    m2 <- rowSums(nc^2)/ncol(nc)
+    n <- mean(colSums(nc))
+    alpha <- (n*m1-m2)/(n*(m2/m1-m1-1)+m1)
+    beta <- ((n-m1)*(n-m2/m1))/(n*(m2/m1-m1-1)+m1)
+    disp <- 1/(alpha+beta)
+    pi <- alpha/(alpha+beta)
+    var <- n*pi*(1-pi)*(n*disp+1)/(1+disp)
+    output <- list(n=n, alpha=alpha, beta=beta, pi=pi, dispersion=disp, var=var)
+    output
 }

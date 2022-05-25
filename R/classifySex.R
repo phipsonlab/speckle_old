@@ -26,7 +26,8 @@
 #' @param qc logical, indicates whether to perform quality control or not. 
 #' qc = TRUE will predict cells that pass quality control only and the filtered 
 #' cells will not be classified. qc = FALSE will predict every cell except the 
-#' cells with zero counts on *XIST/Xist* and the sum of the Y genes. Default is TRUE.
+#' cells with zero counts on *XIST/Xist* and the sum of the Y genes. 
+#' Default is TRUE.
 #' 
 #' @return a dataframe with predicted labels for each cell
 #' 
@@ -74,33 +75,33 @@ classifySex<-function(x, genome=NULL, qc = TRUE)
     
     # pre-process 
     processed.data<-preprocess(x, genome = genome, qc = qc)
-  
+    
     # the processed transposed count matrix 
     tcm <-processed.data$tcm.final
-  
+    
     # the normalised, scaled transposed count matrix 
     data.df <- processed.data$data.df
-  
+    
     # cells that filtered by QC
     discarded.cells <- processed.data$discarded.cells
-  
+    
     # cells with zero count on XIST and superY.all
     zero.cells <- processed.data$zero.cells
-  
+    
     # store the final predictions 
     final.pred<-data.frame(prediction=rep("NA", ncol(x)))
     row.names(final.pred)<- colnames(x)
-  
+    
     # load trained models 
     if(genome == "Mm"){
-      model <- Mm.model
+        model <- Mm.model
     }
     else{
-      model <- Hs.model
+        model <- Hs.model
     }
-
+    
     preds <- predict(model, newdata = data.df)
     final.pred[row.names(data.df), "prediction"]<- as.character(preds)
-  
+    
     final.pred
 }

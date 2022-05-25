@@ -34,7 +34,7 @@ normSca<-function(x, lib.size=lib.size, log = TRUE, prior.count = 0.5)
     x <- as.matrix(x)
     # log normalise
     normalisedVal<- normCounts(x, log = log, prior.count = prior.count, 
-                               lib.size=lib.size)
+                                    lib.size=lib.size)
     # scale
     #scaledVal<-t(scale(t(normalisedVal)))
     #scaledVal
