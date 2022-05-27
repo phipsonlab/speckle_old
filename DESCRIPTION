@@ -13,7 +13,7 @@ Depends: R (>= 3.6.0)
 Imports: limma, edgeR, SingleCellExperiment, Seurat, ggplot2, methods, scuttle, stringr, AnnotationDbi, org.Hs.eg.db, org.Mm.eg.db, stats, grDevices, graphics
 VignetteBuilder: knitr
 Suggests: BiocStyle, knitr, rmarkdown, CellBench, scater, patchwork
-Description: The speckle package contains functions for the analysis of single cell RNA-seq data. The speckle package currently contains functions to analyse differences in cell type proportions, and to classify cells as male or female. There is also a function to estimate the parameters of the Beta distribution based on a given counts matrix, and a function to perform normalise a counts matrix to the median library size. There are plotting functions to visualise cell type proportions and the mean-variance relationship in cell type proportions and counts. As our research into specialised analyses of single cell data continues we anticipate that the package will be updated with new functions.
+Description: The speckle package contains functions for the analysis of single cell RNA-seq data. The speckle package currently contains functions to analyse differences in cell type proportions, and to classify cells as male or female. There are also functions to estimate the parameters of the Beta distribution based on a given counts matrix, and a function to normalise a counts matrix to the median library size. There are plotting functions to visualise cell type proportions and the mean-variance relationship in cell type proportions and counts. As our research into specialised analyses of single cell data continues we anticipate that the package will be updated with new functions.
 License: GPL-3
 biocViews: SingleCell, RNASeq, Regression, GeneExpression
 RoxygenNote: 7.1.1
