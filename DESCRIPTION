@@ -13,7 +13,7 @@ Depends: R (>= 3.6.0)
 Imports: limma, edgeR, SingleCellExperiment, Seurat, ggplot2, methods, scuttle, stringr, AnnotationDbi, org.Hs.eg.db, org.Mm.eg.db, stats, grDevices, graphics
 VignetteBuilder: knitr
 Suggests: BiocStyle, knitr, rmarkdown, CellBench, scater, patchwork
-Description: speckle contains functions for the analysis of single cell RNA-seq data.
+Description: The speckle package contains functions for the analysis of single cell RNA-seq data. There are methods for testing for differences in cell type composition and for predicting the sex of single cells.
 License: GPL-3
 biocViews: SingleCell, RNASeq, Regression, GeneExpression
 RoxygenNote: 7.1.1
