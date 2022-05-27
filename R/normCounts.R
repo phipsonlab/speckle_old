@@ -59,8 +59,9 @@ normCounts <-function(x, log=FALSE, prior.count=0.5, lib.size=NULL)
             if(length(lib.size)==ncol(x))
                 lib.size <- as.vector(lib.size)
             else{
-                message("Vector of library sizes does not match dimensions of input 
-                            data. Calculating library sizes from the counts matrix.")
+                message("Vector of library sizes does not match dimensions 
+                            of input data. Calculating library sizes 
+                            from the counts matrix.")
                 lib.size <- colSums(counts)
             }
         }
