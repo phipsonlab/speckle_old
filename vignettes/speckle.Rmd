@@ -586,13 +586,6 @@ missing novel cell types.
 A combination of approaches may be necessary depending on the dataset. 
 Good luck. The more heterogenous the dataset, the more tricky this becomes.
 
-# See also
-
-Another approach is to model the counts directly using statistical models that 
-can take into account biological variability, such as negative binomial. 
-You can read the 
-[OSCA bookchapter](http://bioconductor.org/books/release/OSCA/multi-sample-comparisons.html)
-on how to use the `r BiocStyle::Biocpkg("edgeR")` package to do this.
 
 # Classifying male and female cells from scRNA-seq data
 
