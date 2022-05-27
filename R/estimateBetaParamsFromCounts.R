@@ -33,7 +33,8 @@
 estimateBetaParamsFromCounts <- function(x){
     # Make sure input is a matrix
     counts <- as.matrix(x)
-    # Normalise the counts so that the total number of counts per sample is equal
+    # Normalise the counts so that the total number of counts 
+    # per sample is equal
     nc <- normCounts(counts)
     # Get cell type means
     m1 <- rowMeans(nc)
