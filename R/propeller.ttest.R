@@ -109,7 +109,14 @@ propeller.ttest <- function(prop.list=prop.list, design=design,
 {
     prop.trans <- prop.list$TransformedProps
     prop <- prop.list$Proportions
-
+    
+    # Add check for fewer than 3 cell types
+    # Robust eBayes doesn't work with fewer than 3 cell types
+    if(nrow(prop.trans)<=2){
+      message("Setting robust to FALSE for eBayes for less than 3 cell types")
+      robust <- FALSE
+    }
+    
     fit <- lmFit(prop.trans, design)
     fit.cont <- contrasts.fit(fit, contrasts=contrasts)
     fit.cont <- eBayes(fit.cont, robust=robust, trend=trend)
@@ -130,7 +137,7 @@ propeller.ttest <- function(prop.list=prop.list, design=design,
         RR <- apply(z, 2, prod)
     }
 
-    fdr <- p.adjust(fit.cont$p.value, method="BH")
+    fdr <- p.adjust(fit.cont$p.value[,1], method="BH")
 
     out <- data.frame(PropMean=fit.prop$coefficients, PropRatio=RR,
                     Tstatistic=fit.cont$t[,1], P.Value=fit.cont$p.value[,1],
