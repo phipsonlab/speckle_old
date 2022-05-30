@@ -102,6 +102,14 @@ propeller.anova <- function(prop.list=prop.list, design=design, coef = coef,
 {
     prop.trans <- prop.list$TransformedProps
     prop <- prop.list$Proportions
+    
+    # Add check for fewer than 3 cell types
+    # Robust eBayes doesn't work with fewer than 3 cell types
+    if(nrow(prop.trans)<=2){
+      message("Robust eBayes doesn't work with fewer than 3 cell types.
+              Setting robust to FALSE")
+      robust <- FALSE
+    }
 
     # get cell type mean proportions ignoring other variables
     # this assumes that the design matrix is not in Intercept format
