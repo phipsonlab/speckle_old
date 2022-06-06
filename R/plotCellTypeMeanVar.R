@@ -87,6 +87,6 @@ plotCellTypeMeanVar <- function(x){
     legend("bottomright", legend=c("Beta-binomial","Negative binomial", 
                                     "Binomial", "Poisson"),
             col=c(4,"purple",1,2), lty=c(1,2,1,2), lwd=2)
-    title("Mean-variance relationship: cell type counts", cex.main=1.5)
+    title("Mean-Var: cell type counts", cex.main=1.5)
 
 }
