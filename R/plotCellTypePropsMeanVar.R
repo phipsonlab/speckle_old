@@ -74,5 +74,5 @@ plotCellTypePropsMeanVar <- function(x){
             legend=c("Empirical Bayes variance","Binomial variance"),
             col=c(4,1), lty=1, lwd=2)
 
-    title("Mean-variance relationship: cell type proportions", cex.main=1.5)
+    title("Mean-Var: cell type proportions", cex.main=1.5)
 }
