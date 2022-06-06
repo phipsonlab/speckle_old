@@ -29,7 +29,7 @@ are outputted for each cell type.
 ## Installation
 
 If you would like to view the speckle vignette, you can install the released 
-version of speckle from [github](https://github.com/Oshlack/speckle) using the 
+version of speckle from [github](https://github.com/phipsonlab/speckle) using the 
 following commands:
 
 ``` r
@@ -54,7 +54,7 @@ library(devtools)
 devtools::install_github("phipsonlab/speckle")
 ```
 
-## Example
+## propeller example
 
 This is a basic example which shows you how to test for differences in cell 
 type proportions in a two group experimental set up.
