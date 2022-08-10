@@ -1,3 +1,7 @@
+# speckle 0.99.0 
+* remove classifySex functions in preparation for submission to Bioconductor
+* speckle only contains propeller functions
+
 # speckle 0.0.3
 * Added functions to classify cells as male or female
 * Change propeller transform default to logit

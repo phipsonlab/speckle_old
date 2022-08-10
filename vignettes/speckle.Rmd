@@ -102,8 +102,6 @@ library(ggplot2)
 library(scater)
 library(patchwork)
 library(edgeR)
-library(AnnotationDbi)
-library(org.Hs.eg.db)
 ```
 
 
@@ -577,7 +575,8 @@ many unique cell types. The `propeller` function can handle proportions of 0 and
 is statistically significant. Consider testing cell type categories that are 
 broader for more meaningful results, perhaps by combining clusters that are 
 highly similar. The refined clusters can always be explored in terms of gene 
-expression differences later on. 
+expression differences later on. One can also test for cell type proportion
+differences within a broader cell type lineage using  `propeller`.
 
 It may be appropriate to perform cell type assignment using classification 
 methods rather than clustering. This allows 
@@ -585,71 +584,6 @@ the user to classify cells into known cell types, but you may run the risk of
 missing novel cell types.
 A combination of approaches may be necessary depending on the dataset. 
 Good luck. The more heterogenous the dataset, the more tricky this becomes.
-
-
-# Classifying male and female cells from scRNA-seq data
-
-A common quality control check in bulk RNA-seq is to check the sex of the 
-samples. The simplest method to do this is to check expression of *XIST*, which 
-is the gene responsible for X-inactivation. It is highly expressed in females, 
-and not expressed in males. In experiments where the sex of the samples has not 
-been recorded, the variation due to sex can often be captured by the top 
-principal component in an MDS or PCA plot. It is important to know if the 
-samples are a mix of males and females and to take this information 
-into account in downstream analysis.
-
-It turns out that for single cell data, it is not a simple matter to classify
-cells as male or female. The main reason for this is that the cells are
-much more lowly sequenced compared to bulk RNA-seq samples resulting in low or 
-zero counts for many genes, including *XIST* and other X- and Y-chromosome 
-genes. Thus simply trying to classify cells as male or female based on observed 
-counts for *XIST* leave many cells unable to be classified.
-
-There are a few reasons for wanting to classify male and female cells. First, it
-could form part of the analysis assessing quality of the cells, and if sex is 
-not information that is easily available, it is an additional variable we can 
-predict from the gene expression. This may then inform further analysis of the 
-data, by allowing us to take sex into account in the analysis.
-
-We have built a classifier to predict the sex of each cell based on logistic 
-regression for human and mouse cells. The input is the matrix of counts where
-the genes are the rows and the cells are the columns. The rownames of the counts
-matrix needs to be gene symbol. The `allcounts` data object contains the counts
-for all the cells used in the `propeller` function, but the rownames are ENSEMBL
-IDs. The first step is thus converting the ENSEMBL IDs to gene symbol.
-
-```{r}
-allcounts[1:5,1:5]
-nc <- normCounts(allcounts, log=TRUE)
-avgexp <- rowMeans(nc)
-o <- order(avgexp, decreasing = TRUE)
-allcounts2 <- allcounts[o,]
-allcounts2[1:5,1:5]
-ann <- AnnotationDbi::select(org.Hs.eg.db, keys=rownames(allcounts2),
-                columns=c("ENSEMBL","SYMBOL"), keytype="ENSEMBL")
-m <- match(rownames(allcounts2), ann$ENSEMBL)
-symbol <- ann$SYMBOL[m]
-table(duplicated(symbol))
-allcounts2 <- allcounts2[!duplicated(symbol) & !is.na(symbol),]
-
-rownames(allcounts2) <- symbol[!duplicated(symbol) & !is.na(symbol)]
-
-table(duplicated(colnames(allcounts2)))
-colnames(allcounts2) <- paste(colnames(allcounts2),1:ncol(allcounts2), sep=".")
-table(duplicated(rownames(allcounts2)))
-```
-
-Now that the counts matrix is in the correct format we can call the 
-`classifySex` function.
-
-```{r}
-sex <- classifySex(allcounts2, genome="Hs", qc=FALSE)
-table(sex$prediction)
-```
-
-The cell lines were all derived from females, so the sex of the cells is 
-correctly classified as female.
-
 
 
 # Session Info
