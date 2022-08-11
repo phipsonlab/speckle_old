@@ -113,8 +113,8 @@ propeller.ttest <- function(prop.list=prop.list, design=design,
     # Add check for fewer than 3 cell types
     # Robust eBayes doesn't work with fewer than 3 cell types
     if(nrow(prop.trans)<=2){
-      message("Setting robust to FALSE for eBayes for less than 3 cell types")
-      robust <- FALSE
+        message("Setting robust to FALSE for eBayes for less than 3 cell types")
+        robust <- FALSE
     }
     
     fit <- lmFit(prop.trans, design)
