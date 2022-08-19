@@ -26,7 +26,7 @@ conditions/groups. The user can also explicitly pass the cluster, sample and
 experimental group information to propeller. P-values and false discovery rates 
 are outputted for each cell type. 
 
-The propeller.ttest and propeller.anova are more general functions that can 
+The propeller.ttest() and propeller.anova() are more general functions that can 
 account for additional covariates in the analysis.
 
 ## Installation
