@@ -4,6 +4,10 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
+**Note**: we have created a clean repository of the speckle package in order to 
+submit the package to Bioconductor and will be retiring this version of speckle 
+(v0.99.0). The new repository is [https://github.com/phipsonlab/speckle](https://github.com/phipsonlab/speckle). 
+
 The speckle package currently contains functions to analyse differences in cell 
 type proportions in single cell RNA-seq data. As our research into specialised 
 analyses of single cell data continues we anticipate that the package will be 
